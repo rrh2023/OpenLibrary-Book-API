@@ -1,11 +1,21 @@
-const http = require('http');
+const express = require('express')
+const dotenv = require('dotenv')
 
-const server = http.createServer((req,res) => {
-    res.setHeader('Content-Type', 'text-plain')
-    res.write('Hello')
-    res.end()
+// Load env vars
+dotenv.config({path: './config/config.env'})
+
+const app = express();
+
+app.get('/', (req, res) => {
+    res.sendStatus(400)
 })
 
-const PORT = 5000;
+app.get('/api/v1/books', (req, res) => {
+    res.json({ name: 'Brad'})
+    res.send('Hello from express')
+    res.sendStatus(400).json({success: false, date: {id : 1}})
+})
 
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+const PORT = process.env.PORT || 5000
+
+app.listen(PORT, console.log())
