@@ -2,7 +2,7 @@
 // @route GET /api/v1/book
 // @access Public
 exports.getBooks = (req,res,next) => {
-    res.status(200).json({success: true, msg: 'Show all books'})
+    res.status(200).json({success: true, msg: 'Show all books', hello: req.hello})
 }
 
 // @descs Get single book
