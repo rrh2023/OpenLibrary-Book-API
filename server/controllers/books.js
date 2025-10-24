@@ -1,3 +1,5 @@
+const Book = require('../models/Book')
+
 // @desc Get all books
 // @route GET /api/v1/book
 // @access Public
@@ -6,9 +8,10 @@ exports.getBooks = (req,res,next) => {
 }
 
 // @descs Get single book
-// @route Get /api/v1/book/:id
+// @route GET /api/v1/book/:id
 // @access Public
 exports.getBook = (req, res, next) => {
+    Bootcamp.create(req.body)
     res.status(200).json({success: true, msg: `Show book ${req.params.id}`})
 }
 
@@ -16,6 +19,7 @@ exports.getBook = (req, res, next) => {
 // @route POST /api/v1/book
 // @access Private
 exports.createBook = (req, res, next) => {
+    console.log(req.body)
     res.status(200).json({success: true, msg: 'Create new book'})
 }
 
