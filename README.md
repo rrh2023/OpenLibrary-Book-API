@@ -1,6 +1,6 @@
 # OpenLibrary Book API
 
-I decided to develop this project due to my love for reading. I wanted to improve my technical skills as well, and I don't think there is any better way than to build something related to one of your passions. 
+> I decided to develop this project due to my love for reading. I wanted to improve my technical skills as well, and I don't think there is any better way than to build something related to one of your passions. 
 
 ## Description
 
@@ -8,36 +8,26 @@ An API meant to store & retrieve information of a user's favorite books from the
 
 ## Getting Started
 
-### Dependencies
+### Usage
 
-<!-- * Describe any prerequisites, libraries, OS version, etc., needed before installing program. -->
-<!-- * ex. Windows 10 -->
+Rename "config/config.env.env" to "config/config.env" and update the values/settings to your own
 
-### Installing
-
-<!-- * How/where to download your program
-* Any modifications needed to be made to files/folders -->
-
-### Executing program
-
-<!-- * How to run the program
-* Step-by-step bullets
+### Technologies
 ```
-code blocks for commands
-``` -->
+Node.js
 
-## Help
-<!-- 
-Any advise for common problems or issues.
+MongoDB
 ```
-command to run if program contains helper info
-``` -->
+
+### Install Dependencies
+
+```
+npm install
+```
 
 ## Authors
 
-Contributors names and contact info
-
-ex. [Roberto Rodas-Herndon](https://www.linkedin.com/in/roberto-herndon)
+[Roberto Rodas-Herndon](https://www.linkedin.com/in/roberto-herndon)
 
 
 ## Acknowledgments
