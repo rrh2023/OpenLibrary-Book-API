@@ -1,6 +1,6 @@
-# OpenLibrary Book Api
+# OpenLibrary Book API
 
-This project was developed due to my love for reading. I wanted to improve my technical skills as well, and I don't think there is any better way than to build related to one of your passions. 
+I decided to develop this project due to my love for reading. I wanted to improve my technical skills as well, and I don't think there is any better way than to build related to one of your passions. 
 
 ## Description
 
