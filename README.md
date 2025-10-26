@@ -1,6 +1,6 @@
 # OpenLibrary Book API
 
-> An API meant to store & retrieve information of a user's favorite books from the OpenLibrary API
+> An API meant to store & retrieve information of a user's favorite books from the OpenLibrary API. A project meant for voracious readers (such as myself!)
 
 ## Getting Started
 
