@@ -9,11 +9,8 @@
 Rename "config/config.env.env" to "config/config.env" and update the values/settings to your own
 
 ### Technologies
-```
-Node.js
-
-MongoDB
-```
+* Node.js
+* MongoDB
 
 ### Install Dependencies
 
