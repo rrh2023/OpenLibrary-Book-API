@@ -1,10 +1,10 @@
 # OpenLibrary Book API
 
-I decided to develop this project due to my love for reading. I wanted to improve my technical skills as well, and I don't think there is any better way than to build related to one of your passions. 
+I decided to develop this project due to my love for reading. I wanted to improve my technical skills as well, and I don't think there is any better way than to build something related to one of your passions. 
 
 ## Description
 
-An API meant to store the information of a user's favorite books from the OpenLibrary API
+An API meant to store & retrieve information of a user's favorite books from the OpenLibrary API
 
 ## Getting Started
 
