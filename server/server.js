@@ -8,11 +8,13 @@ const connectDB = require('./config/db')
 // Load env vars
 dotenv.config({path: './config/config.env'})
 
-// Connect ot database
+// Connect to database
 connectDB()
 
 // Route files
+const authors = require('./routes/authors');
 const books = require('./routes/books');
+
 
 const app = express();
 
@@ -25,7 +27,9 @@ if(process.env.NODE_ENV === 'development'){
 }
 
 // Mount routers
+app.use('/api/v1/authors', authors)
 app.use('/api/v1/books', books)
+
 
 
 app.use(errorHandler)

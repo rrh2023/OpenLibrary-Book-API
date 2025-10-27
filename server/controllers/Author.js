@@ -1,11 +1,11 @@
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async')
-const Book = require('../models/Book')
+const Author = require('../models/Author')
 
-// @desc Get all books
-// @route GET /api/v1/books
+// @desc Get all author
+// @route GET /api/v1/authors
 // @access Public
-exports.getBooks = asyncHandler(async (req,res,next) => {
+exports.getAuthors = asyncHandler(async (req,res,next) => {
     let query;
 
     // Copy req.query
@@ -24,7 +24,7 @@ exports.getBooks = asyncHandler(async (req,res,next) => {
     queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g,match => `${match}`)
 
     // Finding resource
-    query = Book.find(JSON.parse(queryStr));
+    query = Author.find(JSON.parse(queryStr));
 
     // Select Fields
     if(req.query.select){
@@ -45,12 +45,12 @@ exports.getBooks = asyncHandler(async (req,res,next) => {
     const limit = parseInt(req.query.limit, 10) || 25;
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
-    const total = await Bootcamp.countDocuments()
+    const total = await Author.countDocuments()
 
     query = query.skip(startIndex).limit(limit);
 
     // Executing query
-    const books = await query
+    const authors = await query
 
     // Pagination
     const pagination = {}
@@ -67,42 +67,42 @@ exports.getBooks = asyncHandler(async (req,res,next) => {
         }
     }
 
-    res.status(200).json({success: true, count:books.length, pagination: pagination, data: books})
+    res.status(200).json({success: true, count:authors.length, pagination: pagination, data: authors})
 
 })
 
-// @descs Get single book
-// @route GET /api/v1/book/:id
+// @descs Get single author
+// @route GET /api/v1/author/:id
 // @access Public
-exports.getBook = asyncHandler(async (req, res, next) => {
-        const book = await Book.findById(req.params.id);
+exports.getAuthor = asyncHandler(async (req, res, next) => {
+        const author = await Author.findById(req.params.id);
 
-        if(!book){
-            return next(new ErrorResponse(`Book not found with id of ${req.params.id}`, 404));
+        if(!author){
+            return next(new ErrorResponse(`Author not found with id of ${req.params.id}`, 404));
         }else{
-            res.status(200).json({success: true, data: book})
+            res.status(200).json({success: true, data: author})
         }
 })
 
-// @desc Create new book
-// @route POST /api/v1/book
+// @desc Create new author
+// @route POST /api/v1/author
 // @access Private
-exports.createBook = asyncHandler(async (req, res, next) => {
-        const book = await Book.create(req.body)
-        res.status(201).json({success: true, data: book})
+exports.createAuthor = asyncHandler(async (req, res, next) => {
+        const author = await Author.create(req.body)
+        res.status(201).json({success: true, data: author})
 })
 
-// @desc  Delete book
-// @route DELETE /api/v1/book/:id
+// @desc  Delete author
+// @route DELETE /api/v1/author/:id
 // @access Private
-exports.deleteBook = asyncHandler(async (req, res, next) => {
+exports.deleteAuthor = asyncHandler(async (req, res, next) => {
 
-        const book = await Book.findByIdAndDelete(req.params.id);
+        const author = await Author.findByIdAndDelete(req.params.id);
 
-        if(!book){
-            return next(new ErrorResponse(`Book not found with id of ${req.params.id}`, 404));
+        if(!author){
+            return next(new ErrorResponse(`Author not found with id of ${req.params.id}`, 404));
         }else{
-            res.status(200).json({success: true, data: book})
+            res.status(200).json({success: true, data: author})
         }
 
 })
