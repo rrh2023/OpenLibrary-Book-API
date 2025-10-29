@@ -13,12 +13,30 @@ const AuthorSchema = new mongoose.Schema({
             unique: true
         },
     slug: String,
+}, {
+    toJSON: {virtuals: true},
+    toObject: { virtuals: true }
 })
 
 // Create author slug from the name 
 AuthorSchema.pre('save', function(next){
     this.slug = slugify(this.title, {lower: true})
     next()
+});
+
+//Cascade delete books when an author is deleted
+AuthorSchema.pre('remove', async function (next){
+    console.log(`Books being removed from author ${this._id}`)
+    await this.model('Book').deleteMany({ author: this._id});
+    next()
+})
+
+// Reverse populate with virtuals 
+AuthorSchema.virtual('books', {
+    ref: 'Book',
+    localField: '_id',
+    foreignField: 'author',
+    justOne: false
 })
 
 module.exports = mongoose.model('Author', AuthorSchema)

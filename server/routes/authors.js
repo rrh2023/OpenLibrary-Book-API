@@ -1,7 +1,13 @@
 const express = require('express')
 const { getAuthors, getAuthor, createAuthor, deleteAuthor } = require('../controllers/authors')
 
-const router = express.Router();
+// Include other resource routers
+const bookRouter = require('./books')
+
+const router = express.Router({ mergeParams: true});
+
+// Re-route into other resource routers
+router.use('/:authorId/books', bookRouter)
 
 router.route('/').get(getAuthors).post(createAuthor)
 

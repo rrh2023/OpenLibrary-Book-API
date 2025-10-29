@@ -24,7 +24,7 @@ exports.getAuthors = asyncHandler(async (req,res,next) => {
     queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g,match => `${match}`)
 
     // Finding resource
-    query = Author.find(JSON.parse(queryStr));
+    query = Author.find(JSON.parse(queryStr)).populate('books');
 
     // Select Fields
     if(req.query.select){
@@ -97,13 +97,15 @@ exports.createAuthor = asyncHandler(async (req, res, next) => {
 // @access Private
 exports.deleteAuthor = asyncHandler(async (req, res, next) => {
 
-        const author = await Author.findByIdAndDelete(req.params.id);
+        const author = await Author.finById(req.params.id);
 
         if(!author){
             return next(new ErrorResponse(`Author not found with id of ${req.params.id}`, 404));
         }else{
             res.status(200).json({success: true, data: author})
         }
+
+        author.remove()
 
 })
 
