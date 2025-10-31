@@ -12,23 +12,18 @@ exports.getBooks = asyncHandler(async (req, res, next) => {
     let query;
 
     if(req.params.authorsId){
-        query = Book.find({book: req.params.authorId})
-    }else{
-        query = Book.find().populate({
-            path: 'book',
-            select: 'name description'
+        const books = await Book.find({book: req.params.authorId});
+
+        return res.status(200).json({
+            success: true,
+            count: books.length,
+            data: courses
         })
+    }else{
+        res.status(200).json(res.advancedResults)
     }
 
-    const books = await query;
-
-    res.status(200).json({
-        success: true, 
-        count: books.length,
-        data: books
-    }
-        
-    )
+    
 })
 
 // @desc   Get single book
@@ -89,4 +84,9 @@ exports.deleteBook = asyncHandler(async (req, res, next) => {
     }
 
     await book.remove()
+
+    res.status(200).json({
+        success: true,
+        data: {}
+    })
 })
