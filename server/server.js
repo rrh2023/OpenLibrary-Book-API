@@ -14,6 +14,7 @@ connectDB()
 // Route files
 const authors = require('./routes/authors');
 const books = require('./routes/books');
+const auth = require('./routes/auth')
 
 
 const app = express();
@@ -29,6 +30,8 @@ if(process.env.NODE_ENV === 'development'){
 // Mount routers
 app.use('/api/v1/authors', authors)
 app.use('/api/v1/books', books)
+app.use('/api/v1/auth', auth)
+
 
 
 

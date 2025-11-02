@@ -7,7 +7,6 @@ const Author = require('../models/Author')
 // @access Public
 exports.getAuthors = asyncHandler(async (req,res,next) => {
     
-
     res.status(200).json(res.advancedResults)
 
 })
