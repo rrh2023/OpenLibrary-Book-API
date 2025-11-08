@@ -10,12 +10,14 @@ const bookRouter = require('./books')
 
 const router = express.Router({ mergeParams: true});
 
+const { protect, authorize } = require('../middleware/auth')
+
 // Re-route into other resource routers
 router.use('/:authorId/books', bookRouter)
 
-router.route('/').get(advancedResults(Author, 'courses'), getAuthors).post(createAuthor)
+router.route('/').get(advancedResults(Author, 'books'), getAuthors).post(protect, authorize('publisher', 'admin'), createAuthor)
 
-router.route('/:id').get(getAuthor).delete(deleteAuthor)
+router.route('/:id').get(getAuthor).delete(protect, authorize('publisher', 'admin'), deleteAuthor)
 
 module.exports = router
 

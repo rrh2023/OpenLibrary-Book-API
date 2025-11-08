@@ -13,7 +13,13 @@ const AuthorSchema = new mongoose.Schema({
             unique: true
         },
     slug: String,
-}, {
+    user: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    required: true
+}
+},
+{
     toJSON: {virtuals: true},
     toObject: { virtuals: true }
 })

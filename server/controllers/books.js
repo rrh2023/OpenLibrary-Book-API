@@ -54,11 +54,15 @@ exports.getBook = asyncHandler(async (req, res, next) => {
 exports.addBook = asyncHandler(async (req, res, next) => {
 
     req.body.author = req.params.authorId;
+    req.body.user = req.user.id
 
     const author = await Author.findById(req.params.id)
 
     if(!author){
         return next(new ErrorResponse(`No author with the id of ${req.params.authorId}`), 404)
+    }else if (author.user.toString() !== req.user.id && req.user.role !== 'admin') {
+        // Make sure user is author owner
+        return next(new ErrorResponse(`User ${req.params.id} is not authorized to update this bootcamp`))
     }
 
     const book = await Book.create(req.body);
@@ -78,10 +82,18 @@ exports.deleteBook = asyncHandler(async (req, res, next) => {
 
     if(!book){
         return next(
-            newErrorResponse(`No book with the ida of ${req.params.id}`),
+            newErrorResponse(`No book with the id of ${req.params.id}`),
             404
         )
-    }
+    } else if (book.user.toString() !== req.user.id && req.user.role !== 'admin') {
+    // Make sure user is course owner
+    return next(
+      new ErrorResponse(
+        `User ${req.user.id} is not authorized to delete book ${book._id}`,
+        401
+      )
+    );
+  }
 
     await book.remove()
 
