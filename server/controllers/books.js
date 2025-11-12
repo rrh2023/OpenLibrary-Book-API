@@ -11,7 +11,7 @@ const Author = require('../models/Author')
 exports.getBooks = asyncHandler(async (req, res, next) => {
     let query;
 
-    if(req.params.authorsId){
+    if(req.params.authorId){
         const books = await Book.find({book: req.params.authorId});
 
         return res.status(200).json({
@@ -22,8 +22,6 @@ exports.getBooks = asyncHandler(async (req, res, next) => {
     }else{
         res.status(200).json(res.advancedResults)
     }
-
-    
 })
 
 // @desc   Get single book

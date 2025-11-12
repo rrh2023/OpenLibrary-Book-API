@@ -1,15 +1,14 @@
 const express = require('express')
 const { getAuthors, getAuthor, createAuthor, deleteAuthor } = require('../controllers/authors')
 
-
 const Author = require('../models/Author')
-const advancedResults = require('../middleware/advancedResults')
 
 // Include other resource routers
 const bookRouter = require('./books')
 
 const router = express.Router({ mergeParams: true});
 
+const advancedResults = require('../middleware/advancedResults')
 const { protect, authorize } = require('../middleware/auth')
 
 // Re-route into other resource routers

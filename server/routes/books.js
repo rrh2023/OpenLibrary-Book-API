@@ -2,10 +2,10 @@ const express = require('express')
 const { getBooks, getBook, addBook, deleteBook } = require('../controllers/books')
 
 const Book = require('../models/Book')
-const advancedResults = require('../middleware/advancedResults')
 
 const router = express.Router({ mergeParams: true});
 
+const advancedResults = require('../middleware/advancedResults')
 const { protect, authorize } = require('../middleware/auth')
 
 router.route('/').get(advancedResults(Book,{
